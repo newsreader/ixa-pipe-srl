@@ -15,7 +15,6 @@ Ixa-pipe-srl provides a wrapper for English and Spanish dependency parser and se
 
     cd ixa-pipe-srl
     mkdir lib
-    wget https://mate-tools.googlecode.com/files/anna-3.3.jar lib/
-    wget 
-
+    wget http://mate-tools.googlecode.com/files/srl-4.31.tgz
+    
 
