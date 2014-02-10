@@ -7,4 +7,4 @@ Ixa-pipe-srl provides a wrapper for English and Spanish dependency parser and se
 
 
 
-> git clone https://github.com/newsreader/ixa-pipe-srl
+[git clone https://github.com/newsreader/ixa-pipe-srl]
