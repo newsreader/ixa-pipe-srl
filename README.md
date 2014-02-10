@@ -5,8 +5,17 @@ This module is part of IXA-Pipeline, a multilingual NLP pipeline developed by th
 
 Ixa-pipe-srl provides a wrapper for English and Spanish dependency parser and semantic role labeller using mate-tools (https://code.google.com/p/mate-tools/).
 
+#INSTALLATION
+
+## 1 Get module source code
 
     git clone https://github.com/newsreader/ixa-pipe-srl
 
+## 2 Download libraries
 
-a
+    cd ixa-pipe-srl
+    mkdir lib
+    wget https://mate-tools.googlecode.com/files/anna-3.3.jar lib/
+    wget 
+
+
