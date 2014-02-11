@@ -99,7 +99,7 @@ To install the module in the local maven repository, usually located in ~/.m2/, 
 
 In the directory where you have the executable IXA-EHU-srl-1.0.jar you must create a directory for trained modules. This directory should contain two subdirectories, one for the english modules and another for the spanish ones:
 
-    cd /directory-with-jar
+    cd /path-to-the-jar
     mkdir models
     mkdir models/eng
     mkdir models/spa
@@ -118,7 +118,7 @@ The module needs models for dependency parsing and semantic role labeling. You c
 
 In the directory where you have the executable IXA-EHU-srl-1.0.jar you must create a directory called PredicateMatrix.
 
-    cd /directory-with-jar
+    cd /path-to-the-jar
     mkdir PredicateMatrix
     
 Now download and unpack the PredicateMatrix into that directory:
@@ -126,3 +126,30 @@ Now download and unpack the PredicateMatrix into that directory:
     wget http://adimen.si.ehu.es/web/files/PredicateMatrix/PredicateMatrix.srl-module.tar.gz --directory-prefix=
     PredicateMatrix/
     tar -zxf PredicateMatrix/PredicateMatrix.srl-module.tar.gz
+    
+    
+## 9. Using ixa-pipe-srl
+
+The input of the program must be tokenized and POS-tagged text in NAF format and must be giving as standard input. The module can be executed in three different modes:
+
+To perform dependency parsing and semantic role labelling:
+
+    cat infile.naf | java -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar -Xms2500m en
+
+To perform just dependency parsing:
+
+    cat infile.naf | java -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar -Xms2500m en only-deps
+    
+To perform just semantic role labelling:
+
+    cat infile.naf | java -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar -Xms2500m en only-srl
+
+In the last case the input in NAF must contain syntactic dependencies too. It is strongly recomended to reserve at least 2,5 gigabytes of memory for the execution of the module.
+
+To run the program for Spanish:
+
+    cat infile.naf | java -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar -Xms2500m es
+    
+    cat infile.naf | java -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar -Xms2500m es only-deps
+    
+    cat infile.naf | java -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar -Xms2500m es only-srl
