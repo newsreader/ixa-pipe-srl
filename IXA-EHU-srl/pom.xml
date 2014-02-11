@@ -58,6 +58,12 @@
 	</dependency>
 	
 	<dependency>
+	  <groupId>org.jdom</groupId>
+  	  <artifactId>jdom2</artifactId>
+  	  <version>2.0.5</version>
+	</dependency>
+	
+	<dependency>
 		<groupId>local</groupId>
  		<artifactId>srl</artifactId>
   		<version>1.0</version>
@@ -71,20 +77,37 @@
 
   </dependencies>
   
-  <build>
-	<plugins>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-jar-plugin</artifactId>
-			<configuration>
-				<archive>
-					<manifest>
-						<mainClass>ixa.srl.SRL</mainClass>
-					</manifest>
-				</archive>
-			</configuration>
-		</plugin>
+  
+<build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.3.1</version>
+        <executions>
+          <execution>
+            <id>default-jar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <archive>
+                <manifest>
+                  <mainClass>ixa.srl.SRL</mainClass>
+                </manifest>
+              </archive>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>ixa.srl.SRL</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
 	</plugins>
-  </build>
+</build>
 
 </project>
