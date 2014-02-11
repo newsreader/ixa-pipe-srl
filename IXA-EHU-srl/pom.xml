@@ -39,5 +39,25 @@
       <version>1.0-SNAPSHOT</version>
     </dependency>
 
+	<dependency>
+  		<groupId>com.googlecode.mate-tools</groupId>
+  		<artifactId>anna</artifactId>
+  		<version>3.5</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.riedelcastro</groupId>
+  		<artifactId>whatswrong</artifactId>
+  		<version>0.2.4</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>de.bwaldvogel</groupId>
+ 		<artifactId>liblinear</artifactId>
+  		<version>1.94</version>
+	</dependency>
+	
+	
+
   </dependencies>
 </project>
