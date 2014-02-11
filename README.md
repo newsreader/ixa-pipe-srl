@@ -5,16 +5,87 @@ This module is part of IXA-Pipeline, a multilingual NLP pipeline developed by th
 
 Ixa-pipe-srl provides a wrapper for English and Spanish dependency parser and semantic role labeller using mate-tools (https://code.google.com/p/mate-tools/).
 
-#INSTALLATION
+# INSTALLATION
 
-## 1 Get module source code
+Installing the ixa-pipe-srl requires the following steps:
 
-    git clone https://github.com/newsreader/ixa-pipe-srl
+If you already have installed in your machine JDK7 and MAVEN 3, please go to step 3 directly. Otherwise, follow these steps:
 
-## 2 Download libraries
+## 1. Install JDK 1.7
 
-    cd ixa-pipe-srl
-    mkdir lib
-    wget http://mate-tools.googlecode.com/files/srl-4.31.tgz
+If you do not install JDK in a default location, you will probably need to configure the PATH in .bashrc or .bash_profile:
+
+    export JAVA_HOME=/yourpath/local/java7
+    export PATH=${JAVA_HOME}/bin:${PATH}
+
+If you use tcsh you will need to specify it in your .login as follows:
+
+    setenv JAVA_HOME /usr/java/java17
+    setenv PATH ${JAVA_HOME}/bin:${PATH}
+
+If you re-login into your shell and run the command
+
+    java -version
+
+You should now see that your jdk is 1.7
     
 
+## 2. Install MAVEN 3
+
+Download MAVEN 3 from
+
+    wget http://www.apache.org/dyn/closer.cgi/maven/maven-3/3.0.4/binaries/apache-maven-3.0.4-bin.tar.gz
+
+Now you need to configure the PATH. For Bash Shell:
+
+    export MAVEN_HOME=/path-to-apache-maven/apache-maven-3.0.4
+    export PATH=${MAVEN_HOME}/bin:${PATH}
+
+For tcsh shell:
+
+    setenv MAVEN3_HOME ~/local/apache-maven-3.0.4
+    setenv PATH ${MAVEN3}/bin:{PATH}
+
+If you re-login into your shell and run the command
+
+    mvn -version
+
+You should see reference to the MAVEN version you have just installed plus the JDK that is using.
+
+## 3. Get module source code
+
+    git clone https://github.com/newsreader/ixa-pipe-srl
+    
+## 4. Get external references
+
+Some dependencies are not included in maven repositories, but they can be found in the Mate-tools package. First download mate-tools package:
+
+    wget https://mate-tools.googlecode.com/files/srl-4.3.tgz
+
+Notice that the version of mate-tools needed is the 4.3. The module will not work with a higher version. The external references you should extract are seg.jar and srl.jar:
+
+    tar -zxvf srl-4.3.tgz srl-20130917/lib/seg.jar
+    tar -zxvf srl-4.3.tgz srl-20130917/srl.jar
+    
+Now, install these dependencies into the local maven repository:
+
+    mvn install:install-file -Dfile=srl-20130917/srl.jar -DgroupId=local -DartifactId=srl -Dversion=1.0 -Dpackaging=jar
+    mvn install:install-file -Dfile=srl-20130917/lib/seg.jar -DgroupId=local -DartifactId=seg -Dversion=1.0 -Dpackaging=jar
+
+## 5. Move into main directory
+
+    cd ixa-pipe-srl/IXA-EHU-srl
+
+## 6. Install module using maven
+
+    mvn clean package
+
+This step will create a directory called target/ which contains various directories and files. Most importantly, there you will find the module executable:
+
+IXA-EHU-srl-1.0.jar
+
+This executable contains every dependency the module needs, so it is completely portable as long as you have a JVM 1.7 installed.
+
+To install the module in the local maven repository, usually located in ~/.m2/, execute:
+
+    mvn clean install
