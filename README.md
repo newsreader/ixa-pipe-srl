@@ -3,7 +3,12 @@ ixa-pipe-srl
 
 This module is part of IXA-Pipeline, a multilingual NLP pipeline developed by the IXA NLP Group (ixa.si.ehu.es).
 
-Ixa-pipe-srl provides a wrapper for English and Spanish dependency parser and semantic role labeller using mate-tools (https://code.google.com/p/mate-tools/).
+Ixa-pipe-srl provides a wrapper for English and Spanish dependency parser and semantic role labeller using mate-tools (https://code.google.com/p/mate-tools/). The module takes tokenized and POS-tagged text in NAF format as standard input and outputs syntactic and semantic analysis also in NAF.
+
+The models for English and Spanish have been trained using PropBank(http://verbs.colorado.edu/~mpalmer/projects/ace.html), NomBank(http://nlp.cs.nyu.edu/meyers/NomBank.html) Ancora corpus (http://clic.ub.edu/corpus/en/ancora) in CoNLL 2009 Shared Task format (http://ufal.mff.cuni.cz/conll2009-st/).
+
+The semantic annotation provided by the module is enriched using the PredicateMatrix (http://adimen.si.ehu.es/web/PredicateMatrix).
+
 
 # INSTALLATION
 
