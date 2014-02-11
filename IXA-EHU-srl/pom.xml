@@ -57,7 +57,17 @@
   		<version>1.94</version>
 	</dependency>
 	
+	<dependency>
+		<groupId>local</groupId>
+ 		<artifactId>srl</artifactId>
+  		<version>1.0</version>
+	</dependency>
 	
+	<dependency>
+		<groupId>local</groupId>
+ 		<artifactId>seg</artifactId>
+  		<version>1.0</version>
+	</dependency>
 
   </dependencies>
 </project>
