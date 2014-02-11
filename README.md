@@ -106,6 +106,7 @@ The module needs models for dependency parsing and semantic role labeling. You c
 
 
     wget http://mate-tools.googlecode.com/files/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model --directory-prefix=models/spa/
+    wget http://adimen.si.ehu.es/web/files/AnCoraModel/srl-spa.model --directory-prefix=models/spa/
     
     
 ## 8. Download the Predicate Matrix
