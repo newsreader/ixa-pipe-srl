@@ -133,8 +133,7 @@ public class MatePipeline {
 
 	public Sentence parseOraclePI(List<String> words, List<Boolean> isPred)
 			throws Exception {
-		Sentence s = new Sentence(pp.preprocess(words.toArray(new String[words
-				.size()])));
+		Sentence s = new Sentence(pp.preprocess(words.toArray(new String[words.size()])));
 		for (int i = 0; i < isPred.size(); ++i) {
 			if (isPred.get(i)) {
 				s.makePredicate(i);
@@ -151,7 +150,7 @@ public class MatePipeline {
 
 		String jarpath = this.getClass().getClassLoader().getResource("")
 				.getPath();
-		String[] models = new String[2];
+		String[] models = new String[3];
 		if (lang.equals("eng")) {
 			models[0] = jarpath
 					+ "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model";
@@ -160,27 +159,57 @@ public class MatePipeline {
 			models[0] = jarpath
 					+ "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model";
 			models[1] = jarpath + "/models/spa/srl-spa.model";
+			models[2] = jarpath
+					+ "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model";
 		}
 
-		String[] arguments;
+		String[] arguments = null;
 		if (option.equals("only-deps")) {
-			arguments = new String[3];
-			arguments[0] = lang;
-			arguments[1] = "-parser";
-			arguments[2] = models[0];
+			if (lang.equals("eng")) {
+				arguments = new String[3];
+				arguments[0] = lang;
+				arguments[1] = "-parser";
+				arguments[2] = models[0];
+			} else if (lang.equals("spa")) {
+				arguments = new String[5];
+				arguments[0] = lang;
+				arguments[1] = "-parser";
+				arguments[2] = models[0];
+				arguments[3] = "-morph";
+				arguments[4] = models[2];
+			}
 		} else if (option.equals("only-srl")) {
-			arguments = new String[3];
-			arguments[0] = lang;
-			arguments[1] = "-srl";
-			arguments[2] = models[1];
+			if (lang.equals("eng")) {
+				arguments = new String[3];
+				arguments[0] = lang;
+				arguments[1] = "-srl";
+				arguments[2] = models[1];
+			} else if (lang.equals("spa")) {
+				arguments = new String[5];
+				arguments[0] = lang;
+				arguments[1] = "-srl";
+				arguments[2] = models[1];
+				arguments[3] = "-morph";
+				arguments[4] = models[2];
+			}
 		} else {
-			arguments = new String[5];
-			arguments[0] = lang;
-			;
-			arguments[1] = "-parser";
-			arguments[2] = models[0];
-			arguments[3] = "-srl";
-			arguments[4] = models[1];
+			if (lang.equals("eng")) {
+				arguments = new String[5];
+				arguments[0] = lang;
+				arguments[1] = "-parser";
+				arguments[2] = models[0];
+				arguments[3] = "-srl";
+				arguments[4] = models[1];
+			} else if (lang.equals("spa")) {
+				arguments = new String[7];
+				arguments[0] = lang;
+				arguments[1] = "-parser";
+				arguments[2] = models[0];
+				arguments[3] = "-srl";
+				arguments[4] = models[1];
+				arguments[5] = "-morph";
+				arguments[6] = models[2];
+			}
 		}
 
 		CompletePipelineCMDLineOptions options = new CompletePipelineCMDLineOptions();
