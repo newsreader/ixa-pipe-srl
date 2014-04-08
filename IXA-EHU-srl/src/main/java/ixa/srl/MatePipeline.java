@@ -3,6 +3,7 @@ package ixa.srl;
 import is2.data.SentenceData09;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -154,15 +155,20 @@ public class MatePipeline {
 		if (lang.equals("eng")) {
 		    //models[0] = jarpath + "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model";
 		    //models[1] = jarpath + "/models/eng/srl-eng.model";
-		    models[0] = this.getClass().getResourceAsStream( "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model").toString();
-		    models[1] = this.getClass().getResourceAsStream( "/models/eng/srl-eng.model").toString();
+		    //models[0] = this.getClass().getResourceAsStream( "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model").toString();
+		    //models[1] = this.getClass().getResourceAsStream( "/models/eng/srl-eng.model").toString();
+		    models[0] = "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model";
+		    models[1] = "/models/eng/srl-eng.model";
 		} else if (lang.equals("spa")) {
 		    //models[0] = jarpath + "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model";
 		    //models[1] = jarpath + "/models/spa/srl-spa.model";
 		    //models[2] = jarpath + "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model";
-		    models[0] = this.getClass().getResourceAsStream("/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model").toString();
-		    models[1] = this.getClass().getResourceAsStream("/models/spa/spa-eng.model").toString();
-		    models[2] = this.getClass().getResourceAsStream("/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model").toString();
+		    //models[0] = this.getClass().getResourceAsStream("/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model").toString();
+		    //models[1] = this.getClass().getResourceAsStream("/models/spa/spa-eng.model").toString();
+		    //models[2] = this.getClass().getResourceAsStream("/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model").toString();
+		    models[0] = "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model";
+		    models[1] = "/models/spa/srl-spa.model";
+		    models[2] = "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model";
 		}
 
 

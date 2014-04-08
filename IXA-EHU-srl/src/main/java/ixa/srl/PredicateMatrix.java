@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -21,9 +22,10 @@ public class PredicateMatrix {
 
 	public PredicateMatrix() {
 		try {
-		    //String jarpath = this.getClass().getClassLoader().getResource("")
+		    /*String jarpath = this.getClass().getClassLoader().getResource("")
 					.getPath();
-			//BufferedReader pmReader = new BufferedReader(new InputStreamReader(new FileInputStream(jarpath + "/PredicateMatrix/PredicateMatrix.txt"),Charset.forName("UTF-8")));
+			BufferedReader pmReader = new BufferedReader(new InputStreamReader(new FileInputStream(jarpath + "/PredicateMatrix/PredicateMatrix.txt"),Charset.forName("UTF-8")));
+		    */
 
 			InputStream is = this.getClass().getResourceAsStream( "/PredicateMatrix/PredicateMatrix.txt");
 			BufferedReader pmReader = new BufferedReader(new InputStreamReader(is,Charset.forName("UTF-8")));
