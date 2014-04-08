@@ -90,8 +90,8 @@ Now, install these dependencies into the local maven repository:
 In the resources directory you must create a directory for trained modules. This directory should contain two subdirectories, one for the english modules and another for the spanish ones:
 
     mkdir src/main/resources/models
-    mkdir src/main/resources/models/models/eng
-    mkdir src/main/resources/models/models/spa
+    mkdir src/main/resources/models/eng
+    mkdir src/main/resources/models/spa
 
 The module needs models for dependency parsing and semantic role labeling. You can get all the models required with the following commands:
 
