@@ -21,12 +21,12 @@ public class PredicateMatrix {
 
 	public PredicateMatrix() {
 		try {
-			String jarpath = this.getClass().getClassLoader().getResource("")
+		    //String jarpath = this.getClass().getClassLoader().getResource("")
 					.getPath();
-			BufferedReader pmReader = new BufferedReader(new InputStreamReader(
-					new FileInputStream(jarpath
-							+ "/PredicateMatrix/PredicateMatrix.txt"),
-					Charset.forName("UTF-8")));
+			//BufferedReader pmReader = new BufferedReader(new InputStreamReader(new FileInputStream(jarpath + "/PredicateMatrix/PredicateMatrix.txt"),Charset.forName("UTF-8")));
+
+			InputStream is = this.getClass().getResourceAsStream( "/PredicateMatrix/PredicateMatrix.txt");
+			BufferedReader pmReader = new BufferedReader(new InputStreamReader(is,Charset.forName("UTF-8")));
 
 			String pmLine;
 			String[] pmFields;

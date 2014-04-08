@@ -148,20 +148,23 @@ public class MatePipeline {
 
 		Document doc = null;
 
-		String jarpath = this.getClass().getClassLoader().getResource("")
-				.getPath();
+		//String jarpath = this.getClass().getClassLoader().getResource("").getPath();
+		
 		String[] models = new String[3];
 		if (lang.equals("eng")) {
-			models[0] = jarpath
-					+ "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model";
-			models[1] = jarpath + "/models/eng/srl-eng.model";
+		    //models[0] = jarpath + "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model";
+		    //models[1] = jarpath + "/models/eng/srl-eng.model";
+		    models[0] = this.getClass().getResourceAsStream( "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model").toString();
+		    models[1] = this.getClass().getResourceAsStream( "/models/eng/srl-eng.model").toString();
 		} else if (lang.equals("spa")) {
-			models[0] = jarpath
-					+ "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model";
-			models[1] = jarpath + "/models/spa/srl-spa.model";
-			models[2] = jarpath
-					+ "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model";
+		    //models[0] = jarpath + "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model";
+		    //models[1] = jarpath + "/models/spa/srl-spa.model";
+		    //models[2] = jarpath + "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model";
+		    models[0] = this.getClass().getResourceAsStream("/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model").toString();
+		    models[1] = this.getClass().getResourceAsStream("/models/spa/spa-eng.model").toString();
+		    models[2] = this.getClass().getResourceAsStream("/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model").toString();
 		}
+
 
 		String[] arguments = null;
 		if (option.equals("only-deps")) {
