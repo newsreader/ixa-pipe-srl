@@ -81,7 +81,41 @@ Now, install these dependencies into the local maven repository:
 
     cd ixa-pipe-srl/IXA-EHU-srl
 
-## 6. Install module using maven
+## 6. Create resources directory
+
+    mkdir src/main/resources
+
+## 7. Download models
+
+In the resources directory you must create a directory for trained modules. This directory should contain two subdirectories, one for the english modules and another for the spanish ones:
+
+    mkdir src/main/resources/models
+    mkdir src/main/resources/models/models/eng
+    mkdir src/main/resources/models/models/spa
+
+The module needs models for dependency parsing and semantic role labeling. You can get all the models required with the following commands:
+
+    wget http://mate-tools.googlecode.com/files/CoNLL2009-ST-English-ALL.anna-3.3.parser.model --directory-prefix=src/main/resources/models/eng/
+    wget http://fileadmin.cs.lth.se/nlp/models/srl/en/srl-20100906/srl-eng.model --directory-prefix=src/main/resources/models/eng/
+
+
+    wget http://mate-tools.googlecode.com/files/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model --directory-prefix=src/main/resources/models/spa/
+    wget http://adimen.si.ehu.es/web/files/AnCoraModel/srl-spa.model --directory-prefix=src/main/resources/models/spa/
+    
+    
+## 8. Download the Predicate Matrix
+
+In the resources directory you must create a directory called PredicateMatrix.
+
+    mkdir src/main/resources/PredicateMatrix
+    
+Now download and unpack the PredicateMatrix into that directory:
+
+    wget http://adimen.si.ehu.es/web/files/PredicateMatrix/PredicateMatrix.srl-module.tar.gz --directory-prefix=src/main/resources/PredicateMatrix/
+    tar -zxf src/main/resources/PredicateMatrix/PredicateMatrix.srl-module.tar.gz
+    
+
+## 9. Install module using maven
 
     mvn clean package
 
@@ -95,40 +129,7 @@ To install the module in the local maven repository, usually located in ~/.m2/, 
 
     mvn clean install
 
-## 7. Download models
-
-In the directory where you have the executable IXA-EHU-srl-1.0.jar you must create a directory for trained modules. This directory should contain two subdirectories, one for the english modules and another for the spanish ones:
-
-    cd /path-to-the-jar
-    mkdir models
-    mkdir models/eng
-    mkdir models/spa
-
-The module needs models for dependency parsing and semantic role labeling. You can get all the models required with the following commands:
-
-    wget http://mate-tools.googlecode.com/files/CoNLL2009-ST-English-ALL.anna-3.3.parser.model --directory-prefix=models/eng/
-    wget http://fileadmin.cs.lth.se/nlp/models/srl/en/srl-20100906/srl-eng.model --directory-prefix=models/eng/
-
-
-    wget http://mate-tools.googlecode.com/files/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model --directory-prefix=models/spa/
-    wget http://adimen.si.ehu.es/web/files/AnCoraModel/srl-spa.model --directory-prefix=models/spa/
-    
-    
-## 8. Download the Predicate Matrix
-
-In the directory where you have the executable IXA-EHU-srl-1.0.jar you must create a directory called PredicateMatrix.
-
-    cd /path-to-the-jar
-    mkdir PredicateMatrix
-    
-Now download and unpack the PredicateMatrix into that directory:
-
-    wget http://adimen.si.ehu.es/web/files/PredicateMatrix/PredicateMatrix.srl-module.tar.gz --directory-prefix=
-    PredicateMatrix/
-    tar -zxf PredicateMatrix/PredicateMatrix.srl-module.tar.gz
-    
-    
-## 9. Using ixa-pipe-srl
+## 10. Using ixa-pipe-srl
 
 The input of the program must be tokenized and POS-tagged text in NAF format and must be giving as standard input. The module can be executed in three different modes:
 
