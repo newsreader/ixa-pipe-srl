@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
@@ -35,6 +36,8 @@ import se.lth.cs.srl.preprocessor.Preprocessor;
 public class MatePipeline {
 
 	private static final Pattern WHITESPACE_PATTERN = Pattern.compile("\\s+");
+        private static final Pattern JARPATH_PATTERN_BEGIN = Pattern.compile("file:");
+	private static final Pattern JARPATH_PATTERN_END = Pattern.compile("[^/]+jar!.+");
 
 	private Preprocessor pp;
 	private SemanticRoleLabeler srl;
@@ -149,26 +152,20 @@ public class MatePipeline {
 
 		Document doc = null;
 
-		//String jarpath = this.getClass().getClassLoader().getResource("").getPath();
-		
+		String jarpath = this.getClass().getResource("").getPath();
+		Matcher matcher = JARPATH_PATTERN_BEGIN.matcher(jarpath);
+		jarpath = matcher.replaceAll("");		
+		matcher = JARPATH_PATTERN_END.matcher(jarpath);
+		jarpath = matcher.replaceAll("");
+
 		String[] models = new String[3];
 		if (lang.equals("eng")) {
-		    //models[0] = jarpath + "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model";
-		    //models[1] = jarpath + "/models/eng/srl-eng.model";
-		    models[0] = this.getClass().getResource("/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model").getPath();
-		    models[1] = this.getClass().getResource("/models/eng/srl-eng.model").getPath();
-		    //models[0] = "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model";
-		    //models[1] = "/models/eng/srl-eng.model";
+		    models[0] = jarpath + "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model";
+		    models[1] = jarpath + "/models/eng/srl-eng.model";
 		} else if (lang.equals("spa")) {
-		    //models[0] = jarpath + "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model";
-		    //models[1] = jarpath + "/models/spa/srl-spa.model";
-		    //models[2] = jarpath + "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model";
-		    //models[0] = this.getClass().getResourceAsStream("/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model").toString();
-		    //models[1] = this.getClass().getResourceAsStream("/models/spa/spa-eng.model").toString();
-		    //models[2] = this.getClass().getResourceAsStream("/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model").toString();
-		    models[0] = "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model";
-		    models[1] = "/models/spa/srl-spa.model";
-		    models[2] = "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model";
+		    models[0] = jarpath + "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model";
+		    models[1] = jarpath + "/models/spa/srl-spa.model";
+		    models[2] = jarpath + "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model";
 		}
 
 

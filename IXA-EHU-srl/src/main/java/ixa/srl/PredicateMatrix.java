@@ -9,8 +9,13 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class PredicateMatrix {
+
+        private static final Pattern JARPATH_PATTERN_BEGIN = Pattern.compile("file:");
+	private static final Pattern JARPATH_PATTERN_END = Pattern.compile("[^/]+jar!.+");
 
 	private HashMap<String, ArrayList<String>> vnClass = new HashMap<String, ArrayList<String>>();
 	private HashMap<String, ArrayList<String>> vnSubClass = new HashMap<String, ArrayList<String>>();
@@ -22,13 +27,13 @@ public class PredicateMatrix {
 
 	public PredicateMatrix() {
 		try {
-		    /*String jarpath = this.getClass().getClassLoader().getResource("")
-					.getPath();
-			BufferedReader pmReader = new BufferedReader(new InputStreamReader(new FileInputStream(jarpath + "/PredicateMatrix/PredicateMatrix.txt"),Charset.forName("UTF-8")));
-		    */
+		        String jarpath = this.getClass().getResource("").getPath();
+		        Matcher matcher = JARPATH_PATTERN_BEGIN.matcher(jarpath);
+		        jarpath = matcher.replaceAll("");		
+		        matcher = JARPATH_PATTERN_END.matcher(jarpath);
+		        jarpath = matcher.replaceAll("");
 
-			InputStream is = this.getClass().getResourceAsStream( "/PredicateMatrix/PredicateMatrix.txt");
-			BufferedReader pmReader = new BufferedReader(new InputStreamReader(is,Charset.forName("UTF-8")));
+			BufferedReader pmReader = new BufferedReader(new InputStreamReader(new FileInputStream(jarpath + "PredicateMatrix/PredicateMatrix.txt"),Charset.forName("UTF-8")));
 
 			String pmLine;
 			String[] pmFields;
