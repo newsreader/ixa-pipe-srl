@@ -155,10 +155,10 @@ public class MatePipeline {
 		if (lang.equals("eng")) {
 		    //models[0] = jarpath + "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model";
 		    //models[1] = jarpath + "/models/eng/srl-eng.model";
-		    //models[0] = this.getClass().getResourceAsStream( "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model").toString();
-		    //models[1] = this.getClass().getResourceAsStream( "/models/eng/srl-eng.model").toString();
-		    models[0] = "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model";
-		    models[1] = "/models/eng/srl-eng.model";
+		    models[0] = this.getClass().getResource("/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model").getPath();
+		    models[1] = this.getClass().getResource("/models/eng/srl-eng.model").getPath();
+		    //models[0] = "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model";
+		    //models[1] = "/models/eng/srl-eng.model";
 		} else if (lang.equals("spa")) {
 		    //models[0] = jarpath + "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model";
 		    //models[1] = jarpath + "/models/spa/srl-spa.model";
