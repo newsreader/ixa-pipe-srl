@@ -45,6 +45,18 @@ public class Annotate {
 			this.kaflang = "es";
 		}
 
+   	        KAFDocument.LinguisticProcessor depsLP = null;
+		KAFDocument.LinguisticProcessor srlLP = null;
+
+		if (!option.equals("only-srl")) {
+		    depsLP = kaf.addLinguisticProcessor("deps", "ixa-pipe-srl-" + kaflang, "1.0");
+		    depsLP.setBeginTimestamp();
+		}
+		if (!option.equals("only-deps")) {
+		    srlLP = kaf.addLinguisticProcessor("srl", "ixa-pipe-srl-" + kaflang, "1.0");
+		    srlLP.setBeginTimestamp();
+		}
+
 		PrintStream printStreamOriginal = System.out;
 		System.setOut(new PrintStream(new OutputStream() {
 			public void write(int b) {
@@ -62,12 +74,12 @@ public class Annotate {
 		System.setOut(printStreamOriginal);
 
 		if (!option.equals("only-srl")) {
-			kaf.addLinguisticProcessor("deps", "ixa-pipe-srl-" + kaflang, "1.0");
 			XMLMate2KAFDEPS(kaf, response);
+			depsLP.setEndTimestamp();
 		}
 		if (!option.equals("only-deps")) {
-			kaf.addLinguisticProcessor("srl", "ixa-pipe-srl-" + kaflang, "1.0");
 			XMLMate2KAFSRL(kaf, response);
+			srlLP.setEndTimestamp();
 		}
 	}
 
