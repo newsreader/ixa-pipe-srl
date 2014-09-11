@@ -285,6 +285,14 @@ public class Annotate {
 								fnFrames.get(fnf));
 						newPred.addExternalRef(fnFrame);
 					}
+				ArrayList<String> pbPredicates = PM.getPBPredicates(pElement
+						.getAttribute("sense"));
+				if (!pbPredicates.isEmpty())
+					for (int pbp = 0; pbp < pbPredicates.size(); pbp++) {
+						ExternalRef pbPredicate = kaf.newExternalRef("PropBank",
+								pbPredicates.get(pbp));
+						newPred.addExternalRef(pbPredicate);
+					}
 				ArrayList<String> eventTypes = PM.getEventTypes(pElement
 						.getAttribute("sense"));
 				if (!eventTypes.isEmpty())
@@ -338,6 +346,19 @@ public class Annotate {
 												fnFrameElements.get(fnfe));
 								newRole.addExternalRef(fnFrameElement);
 							}
+						ArrayList<String> pbArguments = PM
+								.getPBArguments(pElement
+										.getAttribute("sense")
+										+ ":"
+										+ aElement.getAttribute("argument"));
+						if (!pbArguments.isEmpty())
+							for (int pba = 0; pba < pbArguments.size(); pba++) {
+								ExternalRef pbArgument = kaf
+										.newExternalRef("PropBank",
+												pbArguments.get(pba));
+								newRole.addExternalRef(pbArgument);
+							}
+
 
 						newPred.addRole(newRole);
 					}

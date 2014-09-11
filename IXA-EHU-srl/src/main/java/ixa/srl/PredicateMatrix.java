@@ -20,10 +20,12 @@ public class PredicateMatrix {
 	private HashMap<String, ArrayList<String>> vnClass = new HashMap<String, ArrayList<String>>();
 	private HashMap<String, ArrayList<String>> vnSubClass = new HashMap<String, ArrayList<String>>();
 	private HashMap<String, ArrayList<String>> fnFrame = new HashMap<String, ArrayList<String>>();
+        private HashMap<String, ArrayList<String>> pbPredicate = new HashMap<String, ArrayList<String>>();
 	private HashMap<String, ArrayList<String>> eventType = new HashMap<String, ArrayList<String>>();
 
 	private HashMap<String, ArrayList<String>> vnThematicRole = new HashMap<String, ArrayList<String>>();
 	private HashMap<String, ArrayList<String>> fnFrameElement = new HashMap<String, ArrayList<String>>();
+	private HashMap<String, ArrayList<String>> pbArgument = new HashMap<String, ArrayList<String>>();
 
 	public PredicateMatrix() {
 		try {
@@ -40,64 +42,85 @@ public class PredicateMatrix {
 
 			while ((pmLine = pmReader.readLine()) != null) {
 				pmFields = pmLine.split("\t");
-				if (!pmFields[10].equals("NULL")) {
-					if (!pmFields[0].equals("NULL")) {
+				if (!pmFields[2].equals("NULL")) {
+					if (!pmFields[4].equals("NULL")) {
 						ArrayList<String> array = new ArrayList<String>();
-						if (vnClass.containsKey(pmFields[10]))
-							array = vnClass.get(pmFields[10]);
-						if (newElement(array, pmFields[0]))
-							array.add(pmFields[0]);
-						vnClass.put(pmFields[10], array);
+						if (vnClass.containsKey(pmFields[2]))
+							array = vnClass.get(pmFields[2]);
+						if (newElement(array, pmFields[4]))
+							array.add(pmFields[4]);
+						vnClass.put(pmFields[2], array);
 					}
-					if (!pmFields[2].equals("NULL")) {
+					if (!pmFields[6].equals("NULL")) {
 						ArrayList<String> array = new ArrayList<String>();
-						if (vnSubClass.containsKey(pmFields[10]))
-							array = vnSubClass.get(pmFields[10]);
-						if (newElement(array, pmFields[2]))
-							array.add(pmFields[2]);
-						vnSubClass.put(pmFields[10], array);
+						if (vnSubClass.containsKey(pmFields[2]))
+							array = vnSubClass.get(pmFields[2]);
+						if (newElement(array, pmFields[6]))
+							array.add(pmFields[6]);
+						vnSubClass.put(pmFields[2], array);
 					}
-					if (!pmFields[7].equals("NULL")) {
+					if (!pmFields[12].equals("NULL")) {
 						ArrayList<String> array = new ArrayList<String>();
-						if (fnFrame.containsKey(pmFields[10]))
-							array = fnFrame.get(pmFields[10]);
-						if (newElement(array, pmFields[7]))
-							array.add(pmFields[7]);
-						fnFrame.put(pmFields[10], array);
+						if (fnFrame.containsKey(pmFields[2]))
+							array = fnFrame.get(pmFields[2]);
+						if (newElement(array, pmFields[12]))
+							array.add(pmFields[12]);
+						fnFrame.put(pmFields[2], array);
 					}
-					if (!pmFields[21].equals("NULL")) {
+					if (!pmFields[15].equals("NULL")) {
 						ArrayList<String> array = new ArrayList<String>();
-						if (eventType.containsKey(pmFields[10]))
-							array = eventType.get(pmFields[10]);
-						if (newElement(array, pmFields[21]))
-							array.add(pmFields[21]);
-						eventType.put(pmFields[10], array);
+						if (pbPredicate.containsKey(pmFields[2]))
+							array = pbPredicate.get(pmFields[2]);
+						if (newElement(array, pmFields[15]))
+							array.add(pmFields[15]);
+						pbPredicate.put(pmFields[2], array);
 					}
-					if (!pmFields[11].equals("NULL")) {
-						if (!pmFields[6].equals("NULL")) {
-							ArrayList<String> array = new ArrayList<String>();
-							if (vnThematicRole.containsKey(pmFields[10] + ":A"
-									+ pmFields[11]))
-								array = vnThematicRole.get(pmFields[10] + ":A"
-										+ pmFields[11]);
-							if (newElement(array, pmFields[0] + "#"
-									+ pmFields[6]))
-								array.add(pmFields[0] + "#" + pmFields[6]);
-							vnThematicRole.put(pmFields[10] + ":A"
-									+ pmFields[11], array);
-						}
+					if (!pmFields[25].equals("NULL")) {
+						ArrayList<String> array = new ArrayList<String>();
+						if (eventType.containsKey(pmFields[2]))
+							array = eventType.get(pmFields[2]);
+						if (newElement(array, pmFields[25]))
+							array.add(pmFields[25]);
+						eventType.put(pmFields[2], array);
+					}
+					if (!pmFields[3].equals("NULL")) {
 						if (!pmFields[9].equals("NULL")) {
 							ArrayList<String> array = new ArrayList<String>();
-							if (fnFrameElement.containsKey(pmFields[10] + ":A"
-									+ pmFields[11]))
-								array = fnFrameElement.get(pmFields[10] + ":A"
-										+ pmFields[11]);
-							if (newElement(array, pmFields[7] + "#"
+							if (vnThematicRole.containsKey(pmFields[2] + ":"
+									+ pmFields[3]))
+								array = vnThematicRole.get(pmFields[2] + ":"
+										+ pmFields[3]);
+							if (newElement(array, pmFields[4] + "#"
 									+ pmFields[9]))
-								array.add(pmFields[7] + "#" + pmFields[9]);
-							fnFrameElement.put(pmFields[10] + ":A"
-									+ pmFields[11], array);
+								array.add(pmFields[4] + "#" + pmFields[9]);
+							vnThematicRole.put(pmFields[2] + ":"
+									+ pmFields[3], array);
 						}
+						if (!pmFields[14].equals("NULL")) {
+							ArrayList<String> array = new ArrayList<String>();
+							if (fnFrameElement.containsKey(pmFields[2] + ":"
+									+ pmFields[3]))
+								array = fnFrameElement.get(pmFields[2] + ":"
+										+ pmFields[3]);
+							if (newElement(array, pmFields[12] + "#"
+									+ pmFields[14]))
+								array.add(pmFields[12] + "#" + pmFields[14]);
+							fnFrameElement.put(pmFields[2] + ":"
+									+ pmFields[3], array);
+						}
+						if (!pmFields[16].equals("NULL")) {
+							ArrayList<String> array = new ArrayList<String>();
+							if (pbArgument.containsKey(pmFields[2] + ":"
+									+ pmFields[3]))
+								array = pbArgument.get(pmFields[2] + ":"
+										+ pmFields[3]);
+							if (newElement(array, pmFields[15] + "#"
+									+ pmFields[16]))
+								array.add(pmFields[15] + "#" + pmFields[16]);
+							pbArgument.put(pmFields[2] + ":"
+									+ pmFields[3], array);
+						}
+
 					}
 				}
 			}
@@ -133,6 +156,13 @@ public class PredicateMatrix {
 		return array;
 	}
 
+	public ArrayList<String> getPBPredicates(String PBSense) {
+		ArrayList<String> array = new ArrayList<String>();
+		if (pbPredicate.containsKey(PBSense))
+			array = pbPredicate.get(PBSense);
+		return array;
+	}
+
 	public ArrayList<String> getEventTypes(String PBSense) {
 		ArrayList<String> array = new ArrayList<String>();
 		if (eventType.containsKey(PBSense))
@@ -151,6 +181,13 @@ public class PredicateMatrix {
 		ArrayList<String> array = new ArrayList<String>();
 		if (fnFrameElement.containsKey(PBSenseArgument))
 			array = fnFrameElement.get(PBSenseArgument);
+		return array;
+	}
+
+	public ArrayList<String> getPBArguments(String PBSenseArgument) {
+		ArrayList<String> array = new ArrayList<String>();
+		if (pbArgument.containsKey(PBSenseArgument))
+			array = pbArgument.get(PBSenseArgument);
 		return array;
 	}
 
