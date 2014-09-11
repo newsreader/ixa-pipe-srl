@@ -134,22 +134,22 @@ The input of the program must be tokenized and POS-tagged text in NAF format and
 
 To perform dependency parsing and semantic role labelling:
 
-    cat infile.naf | java -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar -Xms2500m en
+    cat infile.naf | java -Xms2500m -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar en
 
 To perform just dependency parsing:
 
-    cat infile.naf | java -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar -Xms2500m en only-deps
+    cat infile.naf | java -Xms2500m -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar en only-deps
     
 To perform just semantic role labelling:
 
-    cat infile.naf | java -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar -Xms2500m en only-srl
+    cat infile.naf | java -Xms2500m -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar en only-srl
 
 In the last case the input in NAF must contain syntactic dependencies too. It is strongly recomended to reserve at least 2,5 gigabytes of memory for the execution of the module.
 
 To run the program for Spanish:
 
-    cat infile.naf | java -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar -Xms2500m es
+    cat infile.naf | java -Xms2500m -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar es
     
-    cat infile.naf | java -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar -Xms2500m es only-deps
+    cat infile.naf | java -Xms2500m -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar es only-deps
     
-    cat infile.naf | java -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar -Xms2500m es only-srl
+    cat infile.naf | java -Xms2500m -jar /path-to-the-jar/IXA-EHU-srl-1.0.jar es only-srl
