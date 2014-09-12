@@ -102,9 +102,9 @@ public class PredicateMatrix {
 									+ pmFields[3]))
 								array = fnFrameElement.get(pmFields[2] + ":"
 										+ pmFields[3]);
-							if (newElement(array, pmFields[12] + "#"
+							if (newElement(array, pmFields[12] + "-"
 									+ pmFields[14]))
-								array.add(pmFields[12] + "#" + pmFields[14]);
+								array.add(pmFields[12] + "-" + pmFields[14]);
 							fnFrameElement.put(pmFields[2] + ":"
 									+ pmFields[3], array);
 						}
