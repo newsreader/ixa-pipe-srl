@@ -125,7 +125,7 @@ In the target directory you must create a directory called PredicateMatrix.
 Now download and unpack the PredicateMatrix into that directory:
 
     wget http://adimen.si.ehu.es/web/files/PredicateMatrix/PredicateMatrix.srl-module.tar.gz
-    tar -zxf src/main/resources/PredicateMatrix/PredicateMatrix.srl-module.tar.gz -C target/PredicateMatrix/
+    tar -zxf PredicateMatrix.srl-module.tar.gz -C target/PredicateMatrix/
     rm -f PredicateMatrix.srl-module.tar.gz
     
 ## 9. Using ixa-pipe-srl
