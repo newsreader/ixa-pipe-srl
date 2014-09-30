@@ -90,9 +90,9 @@ public class PredicateMatrix {
 									+ pmFields[3]))
 								array = vnThematicRole.get(pmFields[2] + ":"
 										+ pmFields[3]);
-							if (newElement(array, pmFields[4] + "#"
+							if (newElement(array, pmFields[4] + "@"
 									+ pmFields[9]))
-								array.add(pmFields[4] + "#" + pmFields[9]);
+								array.add(pmFields[4] + "@" + pmFields[9]);
 							vnThematicRole.put(pmFields[2] + ":"
 									+ pmFields[3], array);
 						}
@@ -102,9 +102,9 @@ public class PredicateMatrix {
 									+ pmFields[3]))
 								array = fnFrameElement.get(pmFields[2] + ":"
 										+ pmFields[3]);
-							if (newElement(array, pmFields[12] + "-"
+							if (newElement(array, pmFields[12] + "@"
 									+ pmFields[14]))
-								array.add(pmFields[12] + "-" + pmFields[14]);
+								array.add(pmFields[12] + "@" + pmFields[14]);
 							fnFrameElement.put(pmFields[2] + ":"
 									+ pmFields[3], array);
 						}
@@ -114,9 +114,9 @@ public class PredicateMatrix {
 									+ pmFields[3]))
 								array = pbArgument.get(pmFields[2] + ":"
 										+ pmFields[3]);
-							if (newElement(array, pmFields[15] + "#"
+							if (newElement(array, pmFields[15] + "@"
 									+ pmFields[16]))
-								array.add(pmFields[15] + "#" + pmFields[16]);
+								array.add(pmFields[15] + "@" + pmFields[16]);
 							pbArgument.put(pmFields[2] + ":"
 									+ pmFields[3], array);
 						}
