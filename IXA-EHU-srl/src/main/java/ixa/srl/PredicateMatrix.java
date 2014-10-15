@@ -22,6 +22,7 @@ public class PredicateMatrix {
 	private HashMap<String, ArrayList<String>> fnFrame = new HashMap<String, ArrayList<String>>();
         private HashMap<String, ArrayList<String>> pbPredicate = new HashMap<String, ArrayList<String>>();
 	private HashMap<String, ArrayList<String>> eventType = new HashMap<String, ArrayList<String>>();
+	private HashMap<String, ArrayList<String>> wnSense = new HashMap<String, ArrayList<String>>();
 
 	private HashMap<String, ArrayList<String>> vnThematicRole = new HashMap<String, ArrayList<String>>();
 	private HashMap<String, ArrayList<String>> fnFrameElement = new HashMap<String, ArrayList<String>>();
@@ -82,6 +83,14 @@ public class PredicateMatrix {
 						if (newElement(array, pmFields[25]))
 							array.add(pmFields[25]);
 						eventType.put(pmFields[2], array);
+					}
+					if (!pmFields[11].equals("NULL")) {
+					    ArrayList<String> array = new ArrayList<String>();
+					    if (wnSense.containsKey(pmFields[2]))
+						array = wnSense.get(pmFields[2]);
+					    if (newElement(array, pmFields[11]))
+						array.add(pmFields[11]);
+					    wnSense.put(pmFields[2], array);
 					}
 					if (!pmFields[3].equals("NULL")) {
 						if (!pmFields[9].equals("NULL")) {
@@ -167,6 +176,13 @@ public class PredicateMatrix {
 		ArrayList<String> array = new ArrayList<String>();
 		if (eventType.containsKey(PBSense))
 			array = eventType.get(PBSense);
+		return array;
+	}
+
+	public ArrayList<String> getWNSenses(String PBSense) {
+		ArrayList<String> array = new ArrayList<String>();
+		if (wnSense.containsKey(PBSense))
+			array = wnSense.get(PBSense);
 		return array;
 	}
 

@@ -301,6 +301,14 @@ public class Annotate {
 								eventTypes.get(et));
 						newPred.addExternalRef(eventType);
 					}
+				ArrayList<String> wnSenses = PM.getWNSenses(pElement
+						.getAttribute("sense"));
+				if (!wnSenses.isEmpty())
+					for (int wn = 0; wn < wnSenses.size(); wn++) {
+						ExternalRef wnSense = kaf.newExternalRef("WordNet",
+								wnSenses.get(wn));
+						newPred.addExternalRef(wnSense);
+					}
 
 				NodeList aList = pElement.getElementsByTagName("ARG");
 				for (int acont = 0; acont < aList.getLength(); acont++) {
