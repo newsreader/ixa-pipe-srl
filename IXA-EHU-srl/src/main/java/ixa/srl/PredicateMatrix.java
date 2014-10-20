@@ -21,12 +21,14 @@ public class PredicateMatrix {
 	private HashMap<String, ArrayList<String>> vnSubClass = new HashMap<String, ArrayList<String>>();
 	private HashMap<String, ArrayList<String>> fnFrame = new HashMap<String, ArrayList<String>>();
         private HashMap<String, ArrayList<String>> pbPredicate = new HashMap<String, ArrayList<String>>();
+        private HashMap<String, ArrayList<String>> esoClass = new HashMap<String, ArrayList<String>>();
 	private HashMap<String, ArrayList<String>> eventType = new HashMap<String, ArrayList<String>>();
 	private HashMap<String, ArrayList<String>> wnSense = new HashMap<String, ArrayList<String>>();
 
 	private HashMap<String, ArrayList<String>> vnThematicRole = new HashMap<String, ArrayList<String>>();
 	private HashMap<String, ArrayList<String>> fnFrameElement = new HashMap<String, ArrayList<String>>();
 	private HashMap<String, ArrayList<String>> pbArgument = new HashMap<String, ArrayList<String>>();
+	private HashMap<String, ArrayList<String>> esoRole = new HashMap<String, ArrayList<String>>();
 
 	public PredicateMatrix() {
 		try {
@@ -78,10 +80,18 @@ public class PredicateMatrix {
 					}
 					if (!pmFields[25].equals("NULL")) {
 						ArrayList<String> array = new ArrayList<String>();
-						if (eventType.containsKey(pmFields[2]))
-							array = eventType.get(pmFields[2]);
+						if (esoClass.containsKey(pmFields[2]))
+							array = esoClass.get(pmFields[2]);
 						if (newElement(array, pmFields[25]))
 							array.add(pmFields[25]);
+						esoClass.put(pmFields[2], array);
+					}
+					if (!pmFields[27].equals("NULL")) {
+						ArrayList<String> array = new ArrayList<String>();
+						if (eventType.containsKey(pmFields[2]))
+							array = eventType.get(pmFields[2]);
+						if (newElement(array, pmFields[27]))
+							array.add(pmFields[27]);
 						eventType.put(pmFields[2], array);
 					}
 					if (!pmFields[11].equals("NULL")) {
@@ -129,7 +139,18 @@ public class PredicateMatrix {
 							pbArgument.put(pmFields[2] + ":"
 									+ pmFields[3], array);
 						}
-
+						if (!pmFields[26].equals("NULL")) {
+							ArrayList<String> array = new ArrayList<String>();
+							if (esoRole.containsKey(pmFields[2] + ":"
+									+ pmFields[3]))
+								array = esoRole.get(pmFields[2] + ":"
+										+ pmFields[3]);
+							if (newElement(array, pmFields[25] + "@"
+									+ pmFields[26]))
+								array.add(pmFields[25] + "@" + pmFields[26]);
+							esoRole.put(pmFields[2] + ":"
+									+ pmFields[3], array);
+						}
 					}
 				}
 			}
@@ -172,6 +193,13 @@ public class PredicateMatrix {
 		return array;
 	}
 
+    public ArrayList<String> getESOClasses(String PBSense) {
+		ArrayList<String> array = new ArrayList<String>();
+		if (esoClass.containsKey(PBSense))
+			array = esoClass.get(PBSense);
+		return array;
+	}
+
 	public ArrayList<String> getEventTypes(String PBSense) {
 		ArrayList<String> array = new ArrayList<String>();
 		if (eventType.containsKey(PBSense))
@@ -204,6 +232,13 @@ public class PredicateMatrix {
 		ArrayList<String> array = new ArrayList<String>();
 		if (pbArgument.containsKey(PBSenseArgument))
 			array = pbArgument.get(PBSenseArgument);
+		return array;
+	}
+
+	public ArrayList<String> getESORoles(String PBSenseArgument) {
+		ArrayList<String> array = new ArrayList<String>();
+		if (esoRole.containsKey(PBSenseArgument))
+			array = esoRole.get(PBSenseArgument);
 		return array;
 	}
 

@@ -293,6 +293,14 @@ public class Annotate {
 								pbPredicates.get(pbp));
 						newPred.addExternalRef(pbPredicate);
 					}
+				ArrayList<String> esoClasses = PM.getESOClasses(pElement
+						.getAttribute("sense"));
+				if (!esoClasses.isEmpty())
+					for (int esoc = 0; esoc < esoClasses.size(); esoc++) {
+						ExternalRef esoClass = kaf.newExternalRef("ESO",
+								esoClasses.get(esoc));
+						newPred.addExternalRef(esoClass);
+					}
 				ArrayList<String> eventTypes = PM.getEventTypes(pElement
 						.getAttribute("sense"));
 				if (!eventTypes.isEmpty())
@@ -366,7 +374,18 @@ public class Annotate {
 												pbArguments.get(pba));
 								newRole.addExternalRef(pbArgument);
 							}
-
+						ArrayList<String> esoRoles = PM
+								.getESORoles(pElement
+										.getAttribute("sense")
+										+ ":"
+										+ aElement.getAttribute("argument"));
+						if (!esoRoles.isEmpty())
+							for (int esor = 0; esor < esoRoles.size(); esor++) {
+								ExternalRef esoRole = kaf
+										.newExternalRef("ESO",
+												esoRoles.get(esor));
+								newRole.addExternalRef(esoRole);
+							}
 
 						newPred.addRole(newRole);
 					}
