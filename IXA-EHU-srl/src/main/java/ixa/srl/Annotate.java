@@ -30,10 +30,13 @@ public class Annotate {
 
 	private String kaflang = new String();
 
-	MatePipeline mate;
+	//MatePipeline mate;
+	
+	Parse mate;
 
-	public Annotate() {
-		mate = new MatePipeline();
+	public Annotate(PreProcess preprocess) {
+		// mate = new MatePipeline();
+		mate = new Parse(preprocess);
 	}
 
 	public void SRLToKAF(KAFDocument kaf, String lang, String option)
@@ -45,7 +48,7 @@ public class Annotate {
 			this.kaflang = "es";
 		}
 
-   	        KAFDocument.LinguisticProcessor depsLP = null;
+        KAFDocument.LinguisticProcessor depsLP = null;
 		KAFDocument.LinguisticProcessor srlLP = null;
 
 		if (!option.equals("only-srl")) {
@@ -57,21 +60,21 @@ public class Annotate {
 		    srlLP.setBeginTimestamp();
 		}
 
-		PrintStream printStreamOriginal = System.out;
+/*		PrintStream printStreamOriginal = System.out;
 		System.setOut(new PrintStream(new OutputStream() {
 			public void write(int b) {
 			}
 		}));
-
+*/
 		HashMap<String, String> annotationlines = KAF2MateTerms(kaf);
 		if (option.equals("only-srl")) {
 			annotationlines = KAF2MateDeps(annotationlines, kaf, kaflang);
 		}
 		List<String> annotation = KAF2Mate(annotationlines, kaf);
 
-		Document response = annotate(annotation, lang, option);
 
-		System.setOut(printStreamOriginal);
+		Document response = annotate(annotation, lang, option);
+//		System.setOut(printStreamOriginal);
 
 		if (!option.equals("only-srl")) {
 			XMLMate2KAFDEPS(kaf, response);
@@ -205,7 +208,7 @@ public class Annotate {
 
 	private Document annotate(List<String> annotation, String lang,
 			String option) throws Exception {
-		Document response = mate.Pipeline(annotation, lang, option);
+		Document response = mate.ParseDocument(annotation, lang, option);
 		return response;
 	}
 

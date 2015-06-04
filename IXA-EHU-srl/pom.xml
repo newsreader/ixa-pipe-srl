@@ -4,7 +4,7 @@
 
   <groupId>ixa.srl</groupId>
   <artifactId>IXA-EHU-srl</artifactId>
-  <version>1.0</version>
+  <version>3.0</version>
   <packaging>jar</packaging>
 
   <name>IXA-EHU-srl</name>
@@ -95,7 +95,7 @@
 						<transformer
 							implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 							<manifestEntries>
-								<Main-Class>ixa.srl.SRL</Main-Class>
+								<Main-Class>ixa.srl.SRL ixa.srl.SRLServer ixa.srl.SRLClient</Main-Class>
 							</manifestEntries>
 						</transformer>
 					</transformers>
