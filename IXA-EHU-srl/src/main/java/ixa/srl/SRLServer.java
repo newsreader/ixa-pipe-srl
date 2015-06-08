@@ -29,7 +29,7 @@ public class SRLServer {
 	    	PreProcess preprocess = new PreProcess(serverLang,"");
 			if (serverLang.equals("eng")) {
 				PORT=5005;
-			} else if (serverLang.equals("esp")) {
+			} else if (serverLang.equals("spa")) {
 				PORT=5007;	
 			}
 
