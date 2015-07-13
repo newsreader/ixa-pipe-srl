@@ -1,8 +1,5 @@
 package ixa.srl;
 
-import ixa.kaflib.KAFDocument;
-
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataInput;
@@ -11,13 +8,10 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
-import java.net.ServerSocket;
 
-import org.jdom2.JDOMException;
 
 public class SRLClient {
 

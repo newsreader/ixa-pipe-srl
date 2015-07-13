@@ -1,7 +1,5 @@
 package ixa.srl;
 
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
@@ -10,6 +8,7 @@ import java.util.regex.Pattern;
 import ixa.kaflib.Dep;
 import ixa.kaflib.ExternalRef;
 import ixa.kaflib.KAFDocument;
+import ixa.kaflib.KAFDocument.Layer;
 import ixa.kaflib.Predicate;
 import ixa.kaflib.Predicate.Role;
 import ixa.kaflib.Span;
@@ -30,12 +29,9 @@ public class Annotate {
 
 	private String kaflang = new String();
 
-	//MatePipeline mate;
-	
 	Parse mate;
 
 	public Annotate(PreProcess preprocess) {
-		// mate = new MatePipeline();
 		mate = new Parse(preprocess);
 	}
 
@@ -72,7 +68,6 @@ public class Annotate {
 		}
 		List<String> annotation = KAF2Mate(annotationlines, kaf);
 
-
 		Document response = annotate(annotation, lang, option);
 //		System.setOut(printStreamOriginal);
 
@@ -95,16 +90,18 @@ public class Annotate {
 			KAFDocument kaf) {
 		List<String> annotation = new ArrayList<String>();
 
-		int prevSentence = -1;
 		List<WF> wfs = kaf.getWFs();
+		int prevSentence = -1;
 		for (WF wf : wfs) {
 			int sentence = wf.getSent();
-			if (kaf.getSentences().get(sentence - 1).size() < 100) {
+			if (kaf.getBySent(Layer.TERMS,sentence).size() < 100) { //Limit the size of the sentence
 				if (sentence != prevSentence && prevSentence != -1) {
 					annotation.add(System.getProperty("line.separator"));
 				}
-				annotation.add(annotationlines.get(wf.getId()));
-				prevSentence = sentence;
+				if (annotationlines.get(wf.getId()) != null) {
+					annotation.add(annotationlines.get(wf.getId()));
+					prevSentence = sentence;
+				}
 			}
 		}
 		annotation.add(System.getProperty("line.separator"));
@@ -123,7 +120,7 @@ public class Annotate {
 		for (Term term : terms) {
 			String text = "";
 			int sentence = term.getSent();
-			if (kaf.getSentences().get(sentence - 1).size() < 100) {
+			if (kaf.getBySent(Layer.TERMS,sentence).size() < 100) { //Limit the size of the sentence
 				if (sentence != prevSentence && prevSentence != -1) {
 					token = 1;
 					mateSentence++;
@@ -164,6 +161,7 @@ public class Annotate {
 			root = "sentence";
 		}
 
+	
 		List<Dep> deps = kaf.getDeps();
 		for (Dep dep : deps) {
 			Term term = dep.getTo();
@@ -181,7 +179,7 @@ public class Annotate {
 			List<WF> wordforms = term.getWFs();
 			for (WF wordform : wordforms) {
 				int sentence = wordform.getSent();
-				if (kaf.getSentences().get(sentence - 1).size() < 100) {
+				if (kaf.getBySent(Layer.TERMS,sentence).size() < 100) { //Limit the size of the sentence
 					String text = annotationlines.get(wordform.getId());
 					text += "\t" + head + "\t" + head;
 					text += "\t" + deprel + "\t" + deprel;
@@ -191,9 +189,10 @@ public class Annotate {
 		}
 
 		List<WF> wordforms = kaf.getWFs();
+		int firstSent = wordforms.get(0).getSent();
 		for (WF wordform : wordforms) {
 			int sentence = wordform.getSent();
-			if (kaf.getSentences().get(sentence - 1).size() < 100) {
+			if (kaf.getSentences().get(sentence - firstSent).size() < 100) {
 				String text = annotationlines.get(wordform.getId());
 				String[] tokens = WHITESPACE_PATTERN.split(text);
 				if (tokens.length != 12) {

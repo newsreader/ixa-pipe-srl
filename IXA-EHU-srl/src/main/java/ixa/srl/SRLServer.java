@@ -3,19 +3,11 @@ package ixa.srl;
 import ixa.kaflib.KAFDocument;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
 import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Reader;
 import java.io.StringReader;
 import java.net.Socket;
 import java.net.ServerSocket;
@@ -69,7 +61,7 @@ public class SRLServer {
 					
 					stdInReader = new BufferedReader(new StringReader(stdInString));
 					KAFDocument kaf = KAFDocument.createFromStream(stdInReader);
-	
+
 					if (option.equals("")) {
 						annotator.SRLToKAF(kaf, clientLang, "");
 					} else {

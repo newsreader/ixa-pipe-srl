@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -46,7 +45,6 @@ public class Parse {
 			CompletePipelineCMDLineOptions options, String option,
 			PreProcess preprocess, List<String> in) throws IOException,
 			Exception {
-
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
 
@@ -148,7 +146,6 @@ public class Parse {
 					isPred.add(tokens[12].equals("Y"));
 			}
 		}
-
 		return doc;
 	}
 	

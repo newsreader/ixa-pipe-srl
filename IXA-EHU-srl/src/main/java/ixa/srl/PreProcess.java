@@ -1,13 +1,10 @@
 package ixa.srl;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
-
-import org.w3c.dom.Document;
 
 import se.lth.cs.srl.Parse;
 import se.lth.cs.srl.SemanticRoleLabeler;
