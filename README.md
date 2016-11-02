@@ -89,7 +89,7 @@ Now, install these dependencies into the local maven repository:
 
 This step will create a directory called target/ which contains various directories and files. Most importantly, there you will find the module executable:
 
-    IXA-EHU-srl-1.0.jar
+    IXA-EHU-srl-3.0.jar
 
 This executable contains every dependency the module needs, so it is completely portable as long as you have a JVM 1.7 installed.
 
