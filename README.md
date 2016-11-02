@@ -135,7 +135,7 @@ The input of the program must be tokenized and POS-tagged text in NAF format and
 
 First, the server must been initialize:
 
-    java -cp -Xms2500m /path-to-the-jar/target/IXA-EHU-srl-3.0.jar ixa.srl.SRLServer en
+    java -Xms2500m -cp /path-to-the-jar/target/IXA-EHU-srl-3.0.jar ixa.srl.SRLServer en
 
 It is strongly recomended to reserve at least 2,5 gigabytes of memory for the execution of the server module. After loading all the modules the server will stay listening for client petitions. The client module can be executed in three different modes:
 
@@ -155,7 +155,7 @@ In the last case the input in NAF must contain syntactic dependencies too.
 
 To run the server for Spanish:
 
-    java -cp -Xms2500m /path-to-the-jar/IXA-EHU-srl-3.0.jar ixa.srl.SRLServer es
+    java -Xms2500m -cp /path-to-the-jar/IXA-EHU-srl-3.0.jar ixa.srl.SRLServer es
 
 To run the program for Spanish:
 
