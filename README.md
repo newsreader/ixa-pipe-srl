@@ -65,7 +65,7 @@ You should see reference to the MAVEN version you have just installed plus the J
 
 Some dependencies are not included in maven repositories, but they can be found in the Mate-tools package. First download mate-tools package:
 
-    wget https://mate-tools.googlecode.com/files/srl-4.3.tgz
+    wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/mate-tools/srl-4.3.tgz
 
 Notice that the version of mate-tools needed is the 4.3. The module will not work with a higher version. The external references you should extract are liblinear-1.51-with-deps.jar, seg.jar and srl.jar:
 
