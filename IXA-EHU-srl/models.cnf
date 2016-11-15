@@ -1,0 +1,5 @@
+eng	deps	full-path-to-parser-model-for-english
+eng	srl	full-path-to-srl-model-for-english
+spa	deps	full-path-to-parser-model-for-spanish
+spa	srl	full-path-to-srl-model-for-spanish
+spa	morph	full-path-to-morphotagger-model-for-spanish
