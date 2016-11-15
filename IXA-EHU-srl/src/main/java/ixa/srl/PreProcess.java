@@ -1,6 +1,10 @@
 package ixa.srl;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipException;
@@ -64,15 +68,22 @@ public class PreProcess {
 		jarpath = matcher.replaceAll("");
 
 		String[] models = new String[3];
-		if (lang.equals("eng")) {
-		    models[0] = jarpath + "/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model";
-		    models[1] = jarpath + "/models/eng/srl-eng.model";
-		} else if (lang.equals("spa")) {
-		    models[0] = jarpath + "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model";
-		    models[1] = jarpath + "/models/spa/srl-spa.model";
-		    models[2] = jarpath + "/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model";
+		BufferedReader modelsFile = new BufferedReader(new InputStreamReader(new FileInputStream(jarpath + "models.cnf"),Charset.forName("UTF-8")));
+		String modelsLine;
+		String[] modelsFields;
+		while ((modelsLine = modelsFile.readLine()) != null) {
+			modelsFields = modelsLine.split("\t");
+			if (modelsFields[0].equals(lang)){
+				if (modelsFields[1].equals("deps")) {
+					models[0] = modelsFields[2]; 
+				} else if (modelsFields[1].equals("srl")) {
+					models[1] = modelsFields[2];
+				} else if (modelsFields[1].equals("morph")) {
+					models[2] = modelsFields[2];
+				}
+			}
 		}
-
+		modelsFile.close();
 
 		String[] arguments = null;
 		if (option.equals("only-deps")) {

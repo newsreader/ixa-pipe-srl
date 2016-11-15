@@ -1,0 +1,5 @@
+eng	deps	/home/egoitz/Tecnico/java/ixa-pipe-srl/IXA-EHU-srl/target/models/eng/CoNLL2009-ST-English-ALL.anna-3.3.parser.model
+eng	srl	/home/egoitz/Tecnico/java/ixa-pipe-srl/IXA-EHU-srl/target/models/eng/srl-eng.model
+spa	deps	/home/egoitz/Tecnico/java/ixa-pipe-srl/IXA-EHU-srl/target/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.parser.model
+spa	srl	/home/egoitz/Tecnico/java/ixa-pipe-srl/IXA-EHU-srl/target/models/spa/srl-spa.model
+spa	morph	/home/egoitz/Tecnico/java/ixa-pipe-srl/IXA-EHU-srl/target/models/spa/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model
