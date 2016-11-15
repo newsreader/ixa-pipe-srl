@@ -116,7 +116,12 @@ The module needs models for dependency parsing and semantic role labeling. You c
     wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/mate-tools/CoNLL2009-ST-Spanish-ALL.anna-3.3.morphtagger.model --directory-prefix=target/models/spa/
     wget http://adimen.si.ehu.es/web/files/AnCoraModel/srl-spa.model --directory-prefix=target/models/spa/
     
-Edit the "models.conf" file to set the path to the downloaded models, and copy this file to the tartet directory.
+Move the "models.conf" this file to the target directory.
+
+    mv models.conf target/
+
+Edit the "models.conf" file to set the path to the downloaded models.
+
     
 ## 8. Download the Predicate Matrix
 
