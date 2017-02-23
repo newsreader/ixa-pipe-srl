@@ -118,7 +118,7 @@ The module needs models for dependency parsing and semantic role labeling. You c
     
 Move the "models.conf" this file to the target directory.
 
-    mv models.conf target/
+    mv models.cnf target/
 
 Edit the "models.conf" file to set the path to the downloaded models.
 
